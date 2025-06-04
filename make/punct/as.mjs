@@ -1,6 +1,6 @@
 import { CliProc, Ot } from "ot-builder";
 
-import { dropCharacters, dropFeature, dropHints } from "../helpers/drop.mjs";
+import { dropCharacters, dropFeature, dropGlyphNames, dropHints } from "../helpers/drop.mjs";
 import { readFont, writeFont } from "../helpers/font-io.mjs";
 import { isFEMisc, isLongDash, isWS, isWestern } from "../helpers/unicode-kind.mjs";
 
@@ -29,6 +29,7 @@ async function pass(argv) {
 
 	buildContinuousEmDash(main);
 
+	dropGlyphNames(main);
 	aliasFeatMap(main, "vert", 0x2014, 0x2015);
 	CliProc.gcFont(main, Ot.ListGlyphStoreFactory);
 	await writeFont(argv.o, main);

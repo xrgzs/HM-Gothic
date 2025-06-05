@@ -1,6 +1,6 @@
 # HM Gothic (鸿盟细黑 / 鴻盟細黑)
 
-HM Gothic 是一个从 [Sarasa Gothic](https://github.com/be5invis/Sarasa-Gothic) 修改而来的字体构建流程，基于 [Inter](https://github.com/rsms/inter)、[Iosevka](https://github.com/be5invis/Iosevka) 和 [HarmonyOS Sans](https://developer.huawei.com/consumer/cn/design/resource/) 字型设计，适合在中英文之间混排的场景使用，主要用于操作系统页面和编程字体。
+HM Gothic 是一个从 [Sarasa Gothic](https://github.com/be5invis/Sarasa-Gothic) 修改而来的字体构建流程（~~拼好字~~），基于 [Inter](https://github.com/rsms/inter)、[Iosevka](https://github.com/be5invis/Iosevka) 和 [HarmonyOS Sans](https://developer.huawei.com/consumer/cn/design/resource/) 字型设计，适合在中英文之间混排的场景使用，主要用于操作系统页面和编程字体。
 
 > [!CAUTION]
 > 本仓库仅开源过程。不得在公开场合宣传本字体的任何信息。
@@ -27,15 +27,36 @@ HM Gothic 提供了多种字形风格、字重的组合，以满足不同的场�
 **鸿盟细黑**  
 西文字符基于 [Inter](https://github.com/rsms/inter) 字型设计。
 
+https://rsms.me/inter/
+
 - Gothic: 标准字型，全宽引号。
+    - `flags.goth`
 - UI: 专为UI界面设计的字型，半宽引号。
+    - `flags.pwid`: 将字体中的符号转换为全角（PWID）形式。
+    - `flags.tnum`: 启用 Substitution 中的 `tnum`，表格数字，固定宽度的数字。
+
+默认启用的 ~~预制菜~~ Substitution:
+
+- ~~ss01: 类似 MiSans 的数字~~ 配合的是 HarmonyOS Sans，不使用。
+- ~~ss02: 使用便于区分的 `0 I l`~~ 其中 `0` 里面带有 `/`（slash），不喜欢。
+- ss03: 圆形的 `, ;` 等带逗号标点，Inter 默认是一撇，原版 Sarasa Gothic 也有，与 HarmonyOS Sans 更配合。
+- ss04: 使用便于区分的 `I l`，能够避免 Inter 中 `I` 和 `l` 容易混淆的问题。
+- ~~ss08: 方形的 `, ;` 等带逗号标点~~ 像 SimHei，不喜欢。
+- ~~cv10: `G` 的最后一笔是 `ㄱ`（横折）~~ 原版 Sarasa Gothic 有，这里已移除，不喜欢。
 
 **等距鸿盟细黑**  
 西文字符基于 [Iosevka](https://github.com/be5invis/Iosevka) 字型设计。
 
+https://typeof.net/Iosevka/
+
 - Mono: 等宽字型，全宽破折号。
+    - `flags.mono`
 - Term: 等宽字型，半宽破折号。
+    - `flags.mono`
+    - `flags.term`
 - Fixed: 等宽字型，半宽破折号，无连字。
+    - `flags.mono`
+    - `flags.term`
 
 **Slab**: 粗衬线体。在原字形基础上增加了 Slab serif 的特征，使其更具有辨识度。
 

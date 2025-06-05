@@ -87,7 +87,14 @@
 	"latinGroups": {
 		"Inter": {
 			"isCff": false,
-			"bakeFeatures": [{ "tag": "ss03" }, { "tag": "cv10" }],
+			"bakeFeatures": [
+				{
+					"tag": "ss03"
+				},
+				{
+					"tag": "ss04"
+				}
+			],
 			"dropFeatures": [
 				"cv01",
 				"cv02",
@@ -102,6 +109,7 @@
 				"cv11",
 				"cv12",
 				"cv13",
+				"cv14",
 				"ss01",
 				"ss02",
 				"ss03",

@@ -18,10 +18,14 @@ export class GlyphFinder {
 		let candidateLookups = [];
 		if (scriptTag) {
 			const script = this.font.gsub.scripts.get(scriptTag);
-			const language = languageTag
-				? script.languages.get(languageTag)
-				: script.defaultLanguage;
-			features = language.features;
+			if (script) {
+				const language = languageTag
+					? script.languages.get(languageTag)
+					: script.defaultLanguage;
+				if (language) {
+					features = language.features;
+				}
+			}
 		}
 
 		for (const feature of features) {

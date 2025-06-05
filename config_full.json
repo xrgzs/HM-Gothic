@@ -7,7 +7,8 @@
 			"latinGroup": "Inter",
 			"naming": {
 				"en_US": "HM Gothic",
-				"zh_CN": "鸿盟细黑"
+				"zh_CN": "鸿盟细黑",
+				"zh_TW": "鴻盟細黑"
 			}
 		},
 		"Ui": {
@@ -16,7 +17,8 @@
 			"latinGroup": "Inter",
 			"naming": {
 				"en_US": "HM UI",
-				"zh_CN": "鸿盟细黑 UI"
+				"zh_CN": "鸿盟细黑 UI",
+				"zh_TW": "鴻盟細黑 UI"
 			}
 		},
 		"Mono": {
@@ -24,7 +26,8 @@
 			"latinGroup": "IosevkaN",
 			"naming": {
 				"en_US": "HM Mono",
-				"zh_CN": "等距鸿盟细黑"
+				"zh_CN": "等距鸿盟细黑",
+				"zh_TW": "等距鴻盟細黑"
 			}
 		},
 		"Term": {
@@ -33,7 +36,8 @@
 			"latinGroup": "IosevkaNTerm",
 			"naming": {
 				"en_US": "HM Term",
-				"zh_CN": "HM Term"
+				"zh_CN": "HM Term",
+				"zh_TW": "HM Term"
 			}
 		},
 		"Fixed": {
@@ -42,7 +46,8 @@
 			"latinGroup": "IosevkaNFixed",
 			"naming": {
 				"en_US": "HM Fixed",
-				"zh_CN": "HM Fixed"
+				"zh_CN": "HM Fixed",
+				"zh_TW": "HM Fixed"
 			}
 		},
 		"MonoSlab": {
@@ -50,7 +55,8 @@
 			"latinGroup": "IosevkaNSlab",
 			"naming": {
 				"en_US": "HM Mono Slab",
-				"zh_CN": "等距鸿盟细黑 Slab"
+				"zh_CN": "等距鸿盟细黑 Slab",
+				"zh_TW": "等距鴻盟細黑 Slab"
 			}
 		},
 		"TermSlab": {
@@ -59,7 +65,8 @@
 			"isTerm": true,
 			"naming": {
 				"en_US": "HM Term Slab",
-				"zh_CN": "HM Term Slab"
+				"zh_CN": "HM Term Slab",
+				"zh_TW": "HM Term Slab"
 			}
 		},
 		"FixedSlab": {
@@ -68,7 +75,8 @@
 			"isTerm": true,
 			"naming": {
 				"en_US": "HM Fixed Slab",
-				"zh_CN": "HM Fixed Slab"
+				"zh_CN": "HM Fixed Slab",
+				"zh_TW": "HM Fixed Slab"
 			}
 		}
 	},
@@ -165,18 +173,42 @@
 			"big5": false,
 			"jis": false,
 			"korean": false
+		},
+		"TC": {
+			"gbk": false,
+			"big5": true,
+			"jis": false,
+			"korean": false
+		},
+		"CL": {
+			"gbk": false,
+			"big5": true,
+			"jis": false,
+			"korean": false
 		}
 	},
 	"nameTupleSelector": {
-		"SC": ["en_US", "zh_CN"]
+		"SC": ["en_US", "zh_CN"],
+		"TC": ["en_US", "zh_TW"],
+		"CL": ["en_US", "zh_TW"]
 	},
 	"copyright": "Copyright (c) 2015-2025, Renzhi Li (aka. Belleve Invis, belleve@typeof.net). Portions Copyright (c) 2016 The Inter Project Authors. Portions Copyright (c) 2021-2025 Huawei Device Co., Ltd.",
 	"shsSourceMap": {
 		"region": {
-			"SC": "HarmonyOS-SansSC"
+			"SC": "HarmonyOS-SansSC",
+			"TC": "HarmonyOS-SansTC"
 		},
 		"styleMap": {
 			"ExtraLight": "Thin"
+		},
+		"classicalRegion": "CL",
+		"classicalOverridePrefix": "ShangguSansTC",
+		"classicalOverrideSuffixMap": {
+			"ExtraLight": "ExtraLight-subset",
+			"Light": "Light-subset",
+			"Regular": "Regular-subset",
+			"SemiBold": "Medium-subset",
+			"Bold": "Bold-subset"
 		}
 	}
 }

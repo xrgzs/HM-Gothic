@@ -13,7 +13,7 @@ const { run, node, rm, cd, mv, fail } = build.actions;
 const { FileList } = build.predefinedFuncs;
 
 // Directories
-const PREFIX = `Sarasa`;
+const PREFIX = `HM`;
 const BUILD = `.build`;
 const OUT = `out`;
 const SOURCES = `sources`;
@@ -42,26 +42,26 @@ const Start = phony("all", async t => {
 	await t.need(Ttf, Ttc);
 
 	let archiveTargets = [
-		TtcArchive(`7z`, `TTC`, version),
+		// TtcArchive(`7z`, `TTC`, version),
 		TtcArchive(`7z`, `TTC-Unhinted`, version),
-		TtcArchive(`zip`, `TTC`, version),
+		// TtcArchive(`zip`, `TTC`, version),
 		TtcArchive(`zip`, `TTC-Unhinted`, version),
-		SuperTtcArchive(`7z`, `TTC`, version),
+		// SuperTtcArchive(`7z`, `TTC`, version),
 		SuperTtcArchive(`7z`, `TTC-Unhinted`, version),
-		SuperTtcArchive(`zip`, `TTC`, version),
+		// SuperTtcArchive(`zip`, `TTC`, version),
 		SuperTtcArchive(`zip`, `TTC-Unhinted`, version),
-		AllFamilyTtfArchive(`7z`, `TTF`, version),
+		// AllFamilyTtfArchive(`7z`, `TTF`, version),
 		AllFamilyTtfArchive(`7z`, `TTF-Unhinted`, version)
 	];
 
 	// Standalone archives
 	for (const f of config.familyOrder) {
-		archiveTargets.push(SingleFamilyTtfArchive(`7z`, `TTF`, f, version));
+		// archiveTargets.push(SingleFamilyTtfArchive(`7z`, `TTF`, f, version));
 		archiveTargets.push(SingleFamilyTtfArchive(`7z`, `TTF-Unhinted`, f, version));
-		archiveTargets.push(SingleFamilyTtfArchive(`zip`, `TTF`, f, version));
+		// archiveTargets.push(SingleFamilyTtfArchive(`zip`, `TTF`, f, version));
 		archiveTargets.push(SingleFamilyTtfArchive(`zip`, `TTF-Unhinted`, f, version));
 		for (const sf of config.subfamilyOrder) {
-			archiveTargets.push(StandaloneTtfArchive(`7z`, `TTF`, f, sf, version));
+			// archiveTargets.push(StandaloneTtfArchive(`7z`, `TTF`, f, sf, version));
 			archiveTargets.push(StandaloneTtfArchive(`7z`, `TTF-Unhinted`, f, sf, version));
 		}
 	}
@@ -83,16 +83,19 @@ const Start = phony("all", async t => {
 });
 
 const SuperTtc = phony(`super-ttc`, async target => {
-	await target.need(SuperTtcFile`TTC`, SuperTtcFile`TTC-Unhinted`);
+	// await target.need(SuperTtcFile`TTC`, SuperTtcFile`TTC-Unhinted`);
+	await target.need(SuperTtcFile`TTC-Unhinted`);
 });
 
 const Ttc = phony(`ttc`, async t => {
 	await t.need(Ttf);
-	await t.need(TtcFontFiles`TTC`, TtcFontFiles`TTC-Unhinted`);
+	// await t.need(TtcFontFiles`TTC`, TtcFontFiles`TTC-Unhinted`);
+	await t.need(TtcFontFiles`TTC-Unhinted`);
 });
 
 const Ttf = phony(`ttf`, async t => {
-	await t.need(TtfFontFiles`TTF`, TtfFontFiles`TTF-Unhinted`);
+	// await t.need(TtfFontFiles`TTF`, TtfFontFiles`TTF-Unhinted`);
+	await t.need(TtcFontFiles`TTF-Unhinted`);
 });
 
 const CheckTtfAutoHintExists = oracle("oracle:check-ttfautohint-exists", async target => {
@@ -182,7 +185,7 @@ const StandaloneTtfArchive = file.make(
 
 function SevenZipCompress(format, fMT, dir, target, ...inputs) {
 	const formatArgs = format === "7z" ? [`-t7z`, `-mx=9`] : [`-tzip`, `-mx=9`];
-	return cd(dir).run([SEVEN_ZIP, `a`], formatArgs, fMT ? [] : ["-mmt1"], [
+	return cd(dir).run([SEVEN_ZIP, `a`], formatArgs, fMT ? [] : ["-mmt1"], '-mtm=off', [
 		path.relative(dir, target),
 		...inputs
 	]);
@@ -212,12 +215,15 @@ const BreakShsTtc = task.make(
 const ShsTtf = file.make(
 	(region, weight) => `${BUILD}/shs/${region}-${weight}.ttf`,
 	async (t, out, region, weight) => {
-		const [config] = await t.need(Config, BreakShsTtc(weight));
+		// const [config] = await t.need(Config, BreakShsTtc(weight));
+		const [config] = await t.need(Config, de(`${BUILD}/shs`));
 		const shsSourceMap = config.shsSourceMap;
 		const shsPrefix = shsSourceMap.region[region];
 		const shsSuffix = shsSourceMap.styleMap[weight] || weight;
-		const [, $1] = await t.need(de(out.dir), fu`${BUILD}/shs/${shsPrefix}-${shsSuffix}.otf`);
-		await run("otf2ttf", "-o", out.full, $1.full);
+		// const [, $1] = await t.need(de(out.dir), fu`${BUILD}/shs/${shsPrefix}-${shsSuffix}.otf`);
+		// await run("otf2ttf", "-o", out.full, $1.full);
+		await t.need(de(out.dir))
+		await fs.copyFile(`${SOURCES}/shs/${shsPrefix}-${shsSuffix}.ttf`, out.full)
 	}
 );
 

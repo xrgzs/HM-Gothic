@@ -108,10 +108,11 @@ class Out {
 
 const DOWNLOAD = `📦 Download`;
 function downloadItem(label, prefix, format, version, zip) {
-	const normalLink = pkgLink(version, `Sarasa${prefix}-${format}-${version}`, zip);
-	const unhintedLink = pkgLink(version, `Sarasa${prefix}-${format}-Unhinted-${version}`, zip);
-	return `[${label}](${normalLink}) ([Unhinted](${unhintedLink}))`;
+	// const normalLink = pkgLink(version, `HM${prefix}-${format}-${version}`, zip);
+	const unhintedLink = pkgLink(version, `HM${prefix}-${format}-Unhinted-${version}`, zip);
+	// return `[${label}](${normalLink}) ([Unhinted](${unhintedLink}))`;
+	return `[${label}](${unhintedLink})`;
 }
 function pkgLink(version, baseName, format) {
-	return `https://github.com/be5invis/Sarasa-Gothic/releases/download/v${version}/${baseName}.${format}`;
+	return `https://github.com/xrgzs/HM-Gothic/releases/download/v${version}/${baseName}.${format}`;
 }
